@@ -1,27 +1,32 @@
 [英文文档](./README_en.md)
-
+# 暂不维护，暂不维护，暂不维护
 ## 注意事项
-1. 不能显示脚本运行日志，只有登录结果
+
+1. 不显示脚本运行日志，只有登录结果
 2. 阅读量统计有延迟，建议看点赞记录
 
 ## 彩蛋
+
 https://t.me/linuxdoSQL
 每天随机抓取帖子发布在此频道
 
 ## 使用方法一：油猴脚本(火狐不兼容,谷歌可以用)
 
-油猴脚本代码在 index 开头的文件 中，建议在使用前将浏览器页面缩小，这样子可以一次滚动更多页面，读更多的回复
+### 油猴失去焦点后会停止运行,适合前台运行
+
+油猴脚本代码在 index 开头的文件 中，**建议在使用前将浏览器页面缩小**，这样子可以一次滚动更多页面，读更多的回复
 油猴脚本安装地址：
 
 1. https://greasyfork.org/en/scripts/489464-auto-read 自动阅读随机点赞
 2. https://greasyfork.org/en/scripts/506371-auto-like-specific-user 基于搜索到的帖子自动点赞特定用户
 3. https://greasyfork.org/zh-CN/scripts/506567-auto-like-specific-user-base-on-activity 基于用户的活动自动点赞特定用户
 
-## 使用方法二：本地运行（Windows 默认有头浏览器，Linux 默认无头浏览器）
+## 使用方法二：本地运行（Windows 默认有头浏览器(适合后台运行)，Linux 默认无头浏览器）
 
 ### 1.设置环境变量
 
-.env 里面设置用户名 密码 以及其它 env 里面指明的信息
+.env 里面设置用户名 密码 COOKIES 以及其它 env 里面指明的信息
+设置COOKIES后无需设置密码，目前密码登录方式由于验证已失效，建议使用cookie登录，获取cookie的方法是在浏览器中打开需要阅读的网站，按F12打开开发者工具，找到Application（应用程序）选项卡，在左侧的Storage（存储）部分选择Cookies，然后找到以_t=开头的cookie值，将其复制到.env文件中的COOKIES变量中，如果有多个账户需要登录，按照逗号分隔开，例如：COOKIES="_t=lnm123,_t=abc123,_t=def456"
 
 <!-- #### 新功能：话题数据抓取
 - `ENABLE_RSS_FETCH=true` - 启用RSS数据抓取功能（默认关闭）
@@ -30,7 +35,6 @@ https://t.me/linuxdoSQL
 话题数据抓取功能会自动获取访问的话题页面的详细信息（如标题、回复数、浏览量、点赞数等）并保存到数据库中，支持PostgreSQL、MongoDB和MySQL数据库。 -->
 
 ### 2.运行
-
 
 #### Windows
 
@@ -67,7 +71,7 @@ LIKE_SPECIFIC_USER=true node ./bypasscf.js
 
 ## 使用方法三：GitHub Action 每天 随机时间 阅读
 
-#### 说明： 每天运行，每次三十分钟(可自行修改启动时间和持续时间，代码.github\workflows\cron_bypassCF.yaml 和 .github\workflows\cron_bypassCF_likeUser.yaml)
+#### 说明： 每天运行，每次三十分钟(可自行调整持续时间，代码.github\workflows\cron_bypassCF.yaml 和 .github\workflows\cron_bypassCF_likeUser.yaml，持续时间由环境变量的RUN_TIME_LIMIT_MINUTES和yaml配置的timeout-minutes的最小值决定，启动时间目前为随机无法修改)
 
 **目前需要一个额外变量 `PAT_TOKEN`，用于随机时间执行阅读任务。教程：**
 
@@ -79,6 +83,9 @@ LIKE_SPECIFIC_USER=true node ./bypasscf.js
 
 在 GitHub action 的 secrets 设置用户名密码（变量名参考.env 中给出的），这里无法读取.env 变量
 ![设置环境变量教程](image2.png)
+
+除此之外要修改时间还要改action的时间变量:
+https://github.com/14790897/auto-read-liunxdo/blob/117af32dfdd0d3a6c2daf08dcd69e1aa3b7c4d00/.github/workflows/cron_bypassCF.yaml#L12
 
 ### 3.启动 workflow
 
@@ -136,6 +143,8 @@ crontab -e
 这个也可能是因为登陆太频繁导致的，太快的登陆太多的账号
 
 更少见的情况其实是密码错误，还有账户未激活
+
+3.06.2026:在添加环境变量的时候，最后记得需要在action的yaml里面的env部分添加
 
 #### 待做
 

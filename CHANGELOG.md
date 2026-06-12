@@ -1,5 +1,52 @@
 # Changelog
 
+### [1.15.1](https://www.github.com/14790897/auto-read-liunxdo/compare/v1.15.0...v1.15.1) (2026-02-11)
+
+
+### Bug Fixes
+
+* db测试失败因为没有环境变量 ([5f198a3](https://www.github.com/14790897/auto-read-liunxdo/commit/5f198a302203b18e0f4db85be4630e7fdb72d8cf))
+
+## [1.15.0](https://www.github.com/14790897/auto-read-liunxdo/compare/v1.14.4...v1.15.0) (2026-01-21)
+
+
+### Features
+
+* add new script for user login automation and health check endpoint ([c10b990](https://www.github.com/14790897/auto-read-liunxdo/commit/c10b990a3494255c5e53585c403da65df49ccfc3))
+* add root certificate files for PostgreSQL and MongoDB ([5584234](https://www.github.com/14790897/auto-read-liunxdo/commit/5584234d80c66c8c2615392b0b12866bad710837))
+* enhance environment variable handling for RSS and topic data fetch features ([4c446fd](https://www.github.com/14790897/auto-read-liunxdo/commit/4c446fdaa5ceb76abd244bbb57cb2f7d8f89be28))
+
+
+### Bug Fixes
+
+* add repository condition to workflow jobs for consistency ([bc2c5ba](https://www.github.com/14790897/auto-read-liunxdo/commit/bc2c5ba1efe076d5d55f233f42df4067cca100f6))
+* ensure environment variables for RSS and topic data fetch features are set to empty string if not defined ([7759c6a](https://www.github.com/14790897/auto-read-liunxdo/commit/7759c6aef670957f7eb76a4feefd24eaf93feeec))
+* increase connection timeout to 15 seconds for better handling of cross-region network latency ([1e914c5](https://www.github.com/14790897/auto-read-liunxdo/commit/1e914c5264c95642453fb5a40e34ec9af8c6d735))
+* update primary database query to use CockroachDB instead of Aiven PostgreSQL ([2d4419b](https://www.github.com/14790897/auto-read-liunxdo/commit/2d4419b6cd7792bbcc15eb01714788bf21d12427))
+* update RSS and topic data fetch environment variable handling for clarity ([3ae4ca6](https://www.github.com/14790897/auto-read-liunxdo/commit/3ae4ca66b16095d0e40d5a6ed541fc12990b5707))
+
+### [1.14.4](https://www.github.com/14790897/auto-read-liunxdo/compare/v1.14.3...v1.14.4) (2025-11-03)
+
+
+### Bug Fixes
+
+* rm hg ([0cd3ab6](https://www.github.com/14790897/auto-read-liunxdo/commit/0cd3ab642fe9cfca109a1732e4ec1e55b3412b63))
+
+### [1.14.3](https://www.github.com/14790897/auto-read-liunxdo/compare/v1.14.2...v1.14.3) (2025-10-26)
+
+
+### Bug Fixes
+
+* ignore cron push ([fbdb7dd](https://www.github.com/14790897/auto-read-liunxdo/commit/fbdb7ddb052c75c7be57c169e6e7f0af3cc82d01))
+
+### [1.14.2](https://www.github.com/14790897/auto-read-liunxdo/compare/v1.14.1...v1.14.2) (2025-09-26)
+
+
+### Bug Fixes
+
+* // [@exclude](https://www.github.com/exclude)      https://linux.do/a/9611/0 ([150d94a](https://www.github.com/14790897/auto-read-liunxdo/commit/150d94a49d6f47468ec95838ee6f70a17eb0d13b))
+* TargetCloseError: Protocol error (Page.addScriptToEvaluateOnNewDocument): Target closed ([a0633d0](https://www.github.com/14790897/auto-read-liunxdo/commit/a0633d06237c60aa49509b5359c30e992fea6ab7))
+
 ### [1.14.1](https://www.github.com/14790897/auto-read-liunxdo/compare/v1.14.0...v1.14.1) (2025-06-25)
 
 

@@ -1,9 +1,11 @@
-name: likeUser (点赞特定用户)
+name: readLike(需手动取消schedule注释)（自动阅读idc随机点赞）
+#只是固定了WEBSITE变量为idcflare.com
+
 # GitHub.secrets优先级最高，即使没有设置对应的变量，它也会读取，这时变量为空值，导致报错，.env读取的变量无法覆盖这个值,使用了${PASSWORD_ESCAPED//\#/\\#}来对#转义,需要两个\，但是我直接在env文件使用这种方法是不行的，GitHub action是有效
 on:
   # schedule:
-  #   # 每天 UTC 时间 18:00 运行
-  #   - cron: '21 13 * * *'
+  #   # 每天 UTC 时间 19:40 运行
+  #   - cron: "26 10 * * *"
   workflow_dispatch: # 允许手动触发
 
 jobs:
@@ -15,11 +17,11 @@ jobs:
       matrix:
         node-version: [20.x]
     env:
-      # 在作业级别设置环境变量
+      # 在作业级别设置环境变量      
       USERNAMES: ${{ secrets.USERNAMES }}
       PASSWORDS: ${{ secrets.PASSWORDS }}
       COOKIES: ${{ secrets.COOKIES }}
-      WEBSITE: ${{ secrets.WEBSITE }}
+      WEBSITE: "https://idcflare.com"
       RUN_TIME_LIMIT_MINUTES: ${{ secrets.RUN_TIME_LIMIT_MINUTES }}
       MAX_CONCURRENT_ACCOUNTS: ${{ secrets.MAX_CONCURRENT_ACCOUNTS }}
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -59,44 +61,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Install dependencies
         run: |
           npm install
-      #github action设置的action环境变量会完全替换掉env文件的读取，所以需要在action里手动进行加载env文件
-      # - name: Load environment variables
-      #   run: |
-      #     echo "Debug: Checking if .env file exists..."
 
-      #     # 检查 .env 文件是否存在
-      #     if [ -f .env ]; then
-      #       echo ".env file found. Loading environment variables from .env file"
-            
-      #       # 加载 .env 文件中的默认值
-      #       set -a
-      #       source .env
-      #       set +a
-            
-      #       echo "Loaded .env variables:"
-      #     else
-      #       echo ".env file not found. Skipping loading."
-      #     fi
-
-
-      #     if [ -n "${{ secrets.WEBSITE }}" ] && [ ! -z "${{ secrets.WEBSITE }}" ]; then
-      #       echo "Using GitHub Secret for WEBSITE"
-      #       echo "WEBSITE=${{ secrets.WEBSITE }}" >> $GITHUB_ENV
-      #     else
-      #       echo "WEBSITE=${WEBSITE}" >> $GITHUB_ENV
-      #     fi
-
-      #   shell: bash
-
-      # - name: Run a script(linux)
-      #   run: LIKE_SPECIFIC_USER=true node bypasscf.js --USERNAMES "$USERNAMES" --PASSWORDS "$PASSWORDS" --WEBSITE "$WEBSITE"
-
-      - name: Run a script(windows)
-        run: |
-          $env:LIKE_SPECIFIC_USER="true"
-          node bypasscf.js 
-        shell: pwsh
+      - name: Run a script
+        run: node bypasscf.js
